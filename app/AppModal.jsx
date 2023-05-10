@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import StatusBar from "./components/statusBar";
 import Header from "./components/header";
 import DoctorSelection from "./components/doctorSelection";
+import DateSelection from "./components/dateSelection";
 const AppModal = ({ closeModal }) => {
     const [data, setData] = useState({
         step: 1,
@@ -67,7 +68,7 @@ const AppModal = ({ closeModal }) => {
                 <StatusBar
                     step={data.step}
                     user={data.user}
-                    appointment={data.appoitment}
+                    appointment={data.appointment}
                     doctor={data.doctor}
                 />
 
@@ -83,6 +84,15 @@ const AppModal = ({ closeModal }) => {
                                     step: 2,
                                 }))
                             }
+                        />
+                    )}
+                    {data.step === 2 && (
+                        <DateSelection
+                            clinicId={firmInfo?.id}
+                            doctorId={data.doctor?.id}
+                            handleAppointmentSelection={(appointment) => {
+                                setData((prev) => ({ ...prev, appointment, step: 3 }));
+                            }}
                         />
                     )}
                 </div>

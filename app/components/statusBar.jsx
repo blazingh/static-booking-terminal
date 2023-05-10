@@ -39,7 +39,8 @@ const StatusBar = ({ step, user, appointment, doctor }) => {
                     <div className={styles.StatusText}>
                         <span className={styles.StatusTitleGrey}>Randevu Tarihi Seç</span>
                         <span className={styles.StatusDescription}>
-                            {appointment?.readable || ""}
+                            {`${appointment.date.split("-")[2]} ${appointment.monthName
+                                }, saat: ${appointment.time}`}
                         </span>
                     </div>
                 ) : (
