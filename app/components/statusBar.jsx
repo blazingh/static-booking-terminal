@@ -38,13 +38,13 @@ const StatusBar = ({ step, user, appointment, doctor }) => {
                 {step === 2 && <SvgCallendarActive />}
                 {step > 2 && <SvgCheck />}
 
-                {step > 2 && appoitment?.id ? (
+                {step > 2 && appointment?.id ? (
                     <div className={styles.StatusText}>
                         <span className={styles.StatusTitleGrey}>
                             Randevu Tarihi Seç
                         </span>
                         <span className={styles.StatusDescription}>
-                            {appoitment?.readable || ""}
+                            {appointment?.readable || ""}
                         </span>
                     </div>
                 ) : (
