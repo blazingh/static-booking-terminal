@@ -7,6 +7,7 @@ import SvgCallendarGrey from "./icons/callendarGrey";
 import SvgDoctorActive from "./icons/doctorActive";
 import SvgUserActive from "./icons/userActive";
 import SvgAccordian from "./icons/accordian";
+import StatusBar from "./components/statusBar";
 
 const AppModal = ({ closeModal }) => {
     const [data, setData] = useState({
@@ -56,6 +57,7 @@ const AppModal = ({ closeModal }) => {
     return (
         <div className={styles.AppModal}>
             <div className={styles.Content}>
+                {/* header */}
                 <div className={styles.LogoHeader}>
                     <div
                         className={styles.HeaderItem}
@@ -81,73 +83,16 @@ const AppModal = ({ closeModal }) => {
                         />
                     </div>
                 </div>
-                <div className={styles.AppointmenStatus}>
-                    <div className={styles.StatusItem}>
-                        {data?.step === 1 ? <SvgDoctorActive /> : <SvgCheck />}
-                        {data?.step > 1 && data?.doctor?.id ? (
-                            <div className={styles.StatusText}>
-                                <span className={styles.StatusTitleGrey}>
-                                    Hekim Seç
-                                </span>
-                                <span className={styles.StatusDescription}>
-                                    {data?.doctor?.name || ""}
-                                </span>
-                            </div>
-                        ) : (
-                            <div className={styles.StatusText}>
-                                <span className={styles.StatusTitle}>
-                                    Hekim Seç
-                                </span>
-                            </div>
-                        )}
-                    </div>
-                    <SvgAccordian />
-                    <div className={styles.StatusItem}>
-                        {data?.step < 2 && <SvgCallendarGrey />}
-                        {data?.step === 2 && <SvgCallendarActive />}
-                        {data?.step > 2 && <SvgCheck />}
 
-                        {data?.step > 2 && data?.appoitment?.id ? (
-                            <div className={styles.StatusText}>
-                                <span className={styles.StatusTitleGrey}>
-                                    Randevu Tarihi Seç
-                                </span>
-                                <span className={styles.StatusDescription}>
-                                    {data?.appoitment?.readable || ""}
-                                </span>
-                            </div>
-                        ) : (
-                            <div className={styles.StatusText}>
-                                <span className={styles.StatusTitle}>
-                                    Randevu Tarihi Seç
-                                </span>
-                            </div>
-                        )}
-                    </div>
-                    <SvgAccordian />
-                    <div className={styles.StatusItem}>
-                        {data?.step < 3 && <SvgUserGrey />}
-                        {data?.step === 3 && <SvgUserActive />}
-                        {data?.step > 3 && <SvgCheck />}
-                        {data?.step > 3 && data?.user?.id ? (
-                            <div className={styles.StatusText}>
-                                <span className={styles.StatusTitleGrey}>
-                                    Randevu Bilgilerini Gir
-                                </span>
-                                <span className={styles.StatusDescription}>
-                                    {data?.user?.name || ""}{" "}
-                                    {data?.user?.surname || ""}
-                                </span>
-                            </div>
-                        ) : (
-                            <div className={styles.StatusText}>
-                                <span className={styles.StatusTitle}>
-                                    Randevu Bilgilerini Gir
-                                </span>
-                            </div>
-                        )}
-                    </div>
-                </div>
+                {/* status bar */}
+                <StatusBar
+                    step={data.step}
+                    user={data.user}
+                    appointment={data.appoitment}
+                    doctor={data.doctor}
+                />
+
+                {/* content */}
                 <button
                     type="button"
                     className={styles.Button}
