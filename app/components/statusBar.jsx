@@ -10,15 +10,12 @@ import SvgAccordian from "../icons/accordian";
 const StatusBar = ({ step, user, appointment, doctor }) => {
     return (
         <div className={styles.AppointmenStatus}>
-
-        {/* first step */}
+            {/* first step */}
             <div className={styles.StatusItem}>
                 {step === 1 ? <SvgDoctorActive /> : <SvgCheck />}
                 {step > 1 && doctor?.id ? (
                     <div className={styles.StatusText}>
-                        <span className={styles.StatusTitleGrey}>
-                            Hekim Seç
-                        </span>
+                        <span className={styles.StatusTitleGrey}>Hekim Seç</span>
                         <span className={styles.StatusDescription}>
                             {doctor?.name || ""}
                         </span>
@@ -30,28 +27,24 @@ const StatusBar = ({ step, user, appointment, doctor }) => {
                 )}
             </div>
 
-        <SvgAccordian />
-        
-        {/* second step */}
-        <div className={styles.StatusItem}>
+            <SvgAccordian />
+
+            {/* second step */}
+            <div className={styles.StatusItem}>
                 {step < 2 && <SvgCallendarGrey />}
                 {step === 2 && <SvgCallendarActive />}
                 {step > 2 && <SvgCheck />}
 
                 {step > 2 && appointment?.id ? (
                     <div className={styles.StatusText}>
-                        <span className={styles.StatusTitleGrey}>
-                            Randevu Tarihi Seç
-                        </span>
+                        <span className={styles.StatusTitleGrey}>Randevu Tarihi Seç</span>
                         <span className={styles.StatusDescription}>
                             {appointment?.readable || ""}
                         </span>
                     </div>
                 ) : (
                     <div className={styles.StatusText}>
-                        <span className={styles.StatusTitle}>
-                            Randevu Tarihi Seç
-                        </span>
+                        <span className={styles.StatusTitle}>Randevu Tarihi Seç</span>
                     </div>
                 )}
             </div>
@@ -74,9 +67,7 @@ const StatusBar = ({ step, user, appointment, doctor }) => {
                     </div>
                 ) : (
                     <div className={styles.StatusText}>
-                        <span className={styles.StatusTitle}>
-                            Randevu Bilgilerini Gir
-                        </span>
+                        <span className={styles.StatusTitle}>Randevu Bilgilerini Gir</span>
                     </div>
                 )}
             </div>

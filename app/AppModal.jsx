@@ -43,7 +43,7 @@ const AppModal = ({ closeModal }) => {
 
     const getFirmInfo = async () => {
         const response = await fetch(
-            `https://betaapi.dtsanalpos.com/api/firm/getbyurl?url=${url}`,
+            `https://betaapi.dtsanalpos.com/api/firm/getbyurl?url=${url}`
         );
         const data = await response.json();
         if (data?.message == "Success" && data?.result?.length > 0) {
@@ -91,7 +91,8 @@ const AppModal = ({ closeModal }) => {
                     className={styles.Button}
                     onClick={() => {
                         setData((prev) => ({ ...prev, step: prev.step + 1 }));
-                    }}>
+                    }}
+                >
                     add
                 </button>
 
@@ -100,7 +101,8 @@ const AppModal = ({ closeModal }) => {
                     className={styles.Button}
                     onClick={() => {
                         setData((prev) => ({ ...prev, step: prev.step - 1 }));
-                    }}>
+                    }}
+                >
                     remove
                 </button>
                 <button className={styles.CloseButton} onClick={closeModal}>
