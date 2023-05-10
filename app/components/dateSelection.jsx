@@ -123,6 +123,7 @@ function DateSelection({ handleAppointmentSelection, clinicId, doctorId }) {
   useEffect(() => {
     if (!doctorId) return;
     getAppointments();
+    setSelected(null);
   }, [appointments.date]);
 
   return (

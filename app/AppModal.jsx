@@ -66,6 +66,7 @@ const AppModal = ({ closeModal }) => {
 
                 {/* status bar */}
                 <StatusBar
+                    setStep={(step) => setData((prev) => ({ ...prev, step }))}
                     step={data.step}
                     user={data.user}
                     appointment={data.appointment}

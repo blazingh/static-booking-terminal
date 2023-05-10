@@ -7,11 +7,16 @@ import SvgCallendarGrey from "../icons/callendarGrey";
 import SvgDoctorActive from "../icons/doctorActive";
 import SvgUserActive from "../icons/userActive";
 import SvgAccordian from "../icons/accordian";
-const StatusBar = ({ step, user, appointment, doctor }) => {
+const StatusBar = ({ step, user, appointment, doctor, setStep }) => {
     return (
         <div className={styles.AppointmenStatus}>
             {/* first step */}
-            <div className={styles.StatusItem}>
+            <div
+                className={styles.StatusItem}
+                onClick={() => {
+                    if (step > 1) setStep(1);
+                }}
+            >
                 {step === 1 ? <SvgDoctorActive /> : <SvgCheck />}
                 {step > 1 && doctor?.id ? (
                     <div className={styles.StatusText}>
@@ -30,7 +35,12 @@ const StatusBar = ({ step, user, appointment, doctor }) => {
             <SvgAccordian />
 
             {/* second step */}
-            <div className={styles.StatusItem}>
+            <div
+                className={styles.StatusItem}
+                onClick={() => {
+                    if (step > 1) setStep(2);
+                }}
+            >
                 {step < 2 && <SvgCallendarGrey />}
                 {step === 2 && <SvgCallendarActive />}
                 {step > 2 && <SvgCheck />}
