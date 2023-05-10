@@ -1,8 +1,30 @@
 import styles from "./page.module.css";
 import { useState, useEffect } from "react";
+import SvgUserGrey from "./icons/userGrey";
+import SvgCheck from "./icons/check";
+import SvgCallendarActive from "./icons/callendarActive";
+import SvgCallendarGrey from "./icons/callendarGrey";
+import SvgDoctorActive from "./icons/doctorActive";
+import SvgUserActive from "./icons/userActive";
+import SvgAccordian from "./icons/accordian";
 
 const AppModal = ({ closeModal }) => {
-    const [data, setData] = useState({});
+    const [data, setData] = useState({
+        step: 1,
+        doctor: {
+            id: 1,
+            name: "Dr. Ahmet Yılmaz",
+        },
+        appoitment: {
+            id: 1,
+            readable: "12.12.2021 12:00",
+        },
+        user: {
+            id: 1,
+            name: "Ahmet",
+            surname: "Yılmaz",
+        },
+    });
 
     const [firmInfo, setFirmInfo] = useState({});
 
@@ -59,6 +81,97 @@ const AppModal = ({ closeModal }) => {
                         />
                     </div>
                 </div>
+                <div className={styles.AppointmenStatus}>
+                    <div className={styles.StatusItem}>
+                        {data?.step === 1 ? <SvgDoctorActive /> : <SvgCheck />}
+                        {data?.step > 1 && data?.doctor?.id ? (
+                            <div className={styles.StatusText}>
+                                <span className={styles.StatusTitleGrey}>
+                                    Hekim Seç
+                                </span>
+                                <span className={styles.StatusDescription}>
+                                    {data?.doctor?.name || ""}
+                                </span>
+                            </div>
+                        ) : (
+                            <div className={styles.StatusText}>
+                                <span className={styles.StatusTitle}>
+                                    Hekim Seç
+                                </span>
+                            </div>
+                        )}
+                    </div>
+                    <SvgAccordian />
+                    <div className={styles.StatusItem}>
+                        {data?.step < 2 && <SvgCallendarGrey />}
+                        {data?.step === 2 && <SvgCallendarActive />}
+                        {data?.step > 2 && <SvgCheck />}
+
+                        {data?.step > 2 && data?.appoitment?.id ? (
+                            <div className={styles.StatusText}>
+                                <span className={styles.StatusTitleGrey}>
+                                    Randevu Tarihi Seç
+                                </span>
+                                <span className={styles.StatusDescription}>
+                                    {data?.appoitment?.readable || ""}
+                                </span>
+                            </div>
+                        ) : (
+                            <div className={styles.StatusText}>
+                                <span className={styles.StatusTitle}>
+                                    Randevu Tarihi Seç
+                                </span>
+                            </div>
+                        )}
+                    </div>
+                    <SvgAccordian />
+                    <div className={styles.StatusItem}>
+                        {data?.step < 3 && <SvgUserGrey />}
+                        {data?.step === 3 && <SvgUserActive />}
+                        {data?.step > 3 && <SvgCheck />}
+                        {data?.step > 3 && data?.user?.id ? (
+                            <div className={styles.StatusText}>
+                                <span className={styles.StatusTitleGrey}>
+                                    Randevu Bilgilerini Gir
+                                </span>
+                                <span className={styles.StatusDescription}>
+                                    {data?.user?.name || ""}{" "}
+                                    {data?.user?.surname || ""}
+                                </span>
+                            </div>
+                        ) : (
+                            <div className={styles.StatusText}>
+                                <span className={styles.StatusTitle}>
+                                    Randevu Bilgilerini Gir
+                                </span>
+                            </div>
+                        )}
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    className={styles.Button}
+                    onClick={() => {
+                        setData((prev) => ({ ...prev, step: prev.step + 1 }));
+                    }}>
+                    add
+                </button>
+
+                <button
+                    type="button"
+                    className={styles.Button}
+                    onClick={() => {
+                        setData((prev) => ({ ...prev, step: prev.step - 1 }));
+                    }}>
+                    remove
+                </button>
+
+                <SvgCheck />
+                <SvgDoctorActive />
+                <SvgCallendarGrey />
+                <SvgCallendarActive />
+                <SvgUserGrey />
+                <SvgUserActive />
                 <button className={styles.CloseButton} onClick={closeModal}>
                     X
                 </button>

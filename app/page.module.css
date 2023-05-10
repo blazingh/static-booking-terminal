@@ -1,6 +1,4 @@
-
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 .AppPage {
     width: 100%;
@@ -16,17 +14,17 @@
     position: absolute;
     bottom: 16px;
     right: 16px;
-    
-border: none;
+
+    border: none;
 
     padding: 16px 32px;
 
     background-color: green;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-size: 16px;
     color: #fff;
-    background-color: #5D5FEF;
+    background-color: #5d5fef;
     border-radius: 16px;
 }
 
@@ -45,7 +43,7 @@ border: none;
 
     background-color: rgba(0, 0, 0, 0.5);
 
-    .Content{
+    .Content {
         background-color: #fff;
         padding: 24px;
         width: 100%;
@@ -55,13 +53,13 @@ border: none;
     }
 }
 
-.LogoHeader{
+.LogoHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 72px;
 
-    .HeaderItem{
+    .HeaderItem {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -69,28 +67,79 @@ border: none;
         width: 100%;
     }
 
-    .HeaderTitle{
-        font-family: 'Poppins', sans-serif;
+    .HeaderTitle {
+        font-family: "Poppins", sans-serif;
         font-weight: 600;
         font-size: 24px;
         color: #212121;
     }
-
 }
 
-.Logo{
+.Logo {
     justify-self: flex-start;
     width: 180px;
     height: 30px;
     object-fit: cover;
 }
 
-.secondaryLogo{
+.secondaryLogo {
     justify-self: flex-end;
     height: 100%;
     object-fit: cover;
 }
 
+.AppointmenStatus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin-inline: auto;
+    margin-top: 24px;
+    gap: 48px;
 
+    .StatusItem {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        column-gap: 12px;
 
+        .StatusText {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100%;
+            flex-direction: column;
+            width: 100%;
 
+            .StatusTitle {
+                font-family: "Poppins", sans-serif;
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 24px;
+                color: #212121;
+            }
+
+            .StatusDescription {
+                font-family: "Poppins", sans-serif;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 16px;
+                color: #919191;
+            }
+
+            .StatusTitleGrey {
+                font-family: "Poppins", sans-serif;
+                font-weight: 600;
+                font-size: 16px;
+                color: #919191;
+            }
+        }
+    }
+}
+
+.Accordian{
+    flex-shrink: 0;
+
+}
