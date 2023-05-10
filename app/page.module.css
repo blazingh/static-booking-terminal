@@ -40,11 +40,13 @@
     height: 100vh;
     padding: 64px;
 
+
     z-index: 9999;
 
     background-color: rgba(0, 0, 0, 0.5);
 
     .Content {
+        overflow: hidden;
         background-color: #fff;
         padding: 24px;
         width: 100%;
@@ -54,6 +56,27 @@
     }
 }
 
+.ContentContainer{
+margin-top: 24px;
+    dipaly: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 782px;
+    margin-inline: auto;
+    overflow-y: scroll;
+    height: 100%;
+    padding-bottom: 162px;
+    
+    --ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+}
+
+.ContentContainer::-webkit-scrollbar {
+    display: none;
+}
 .Accordian{
     flex-shrink: 0;
 

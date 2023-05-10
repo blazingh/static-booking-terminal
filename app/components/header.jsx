@@ -19,8 +19,9 @@ const Header = ({ firm }) => {
                 style={{ justifyContent: "flex-end" }}>
                 <img
                     src={
-                        firm?.logo ||
-                        `https://dtsanalpos.com/assets/img/logo-colorfull.png`
+                        firm?.files?.["logo.image"]?.tr?.[0].file
+                            ? `https://betaapi.dtsanalpos.com/${firm?.files?.["logo.image"]?.tr?.[0].file}`
+                            : `https://dtsanalpos.com/assets/img/logo-colorfull.png`
                     }
                     className={styles.secondaryLogo}
                     alt="logo"

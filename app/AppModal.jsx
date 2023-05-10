@@ -2,6 +2,7 @@ import styles from "./page.module.css";
 import { useState, useEffect } from "react";
 import StatusBar from "./components/statusBar";
 import Header from "./components/header";
+import DoctorSelection from "./components/doctorSelection";
 const AppModal = ({ closeModal }) => {
     const [data, setData] = useState({
         step: 1,
@@ -41,11 +42,15 @@ const AppModal = ({ closeModal }) => {
     }
 
     const getFirmInfo = async () => {
-        setFirmInfo({
-            name: "Firm Name",
-            logo: "https://via.placeholder.com/150",
-            id: "1",
-        });
+        const response = await fetch(
+            `https://betaapi.dtsanalpos.com/api/firm/getbyurl?url=${url}`,
+        );
+        const data = await response.json();
+        if (data?.message == "Success" && data?.result?.length > 0) {
+            setFirmInfo(data.result[0]);
+        } else {
+            setFirmInfo({ fail: true });
+        }
     };
 
     useEffect(() => {
@@ -67,6 +72,20 @@ const AppModal = ({ closeModal }) => {
                 />
 
                 {/* content */}
+                <div className={styles.ContentContainer}>
+                    {data.step === 1 && (
+                        <DoctorSelection
+                            firmId={firmInfo?.id}
+                            onDoctorSelect={(doctor) =>
+                                setData((prev) => ({
+                                    ...prev,
+                                    doctor,
+                                    step: 2,
+                                }))
+                            }
+                        />
+                    )}
+                </div>
                 <button
                     type="button"
                     className={styles.Button}

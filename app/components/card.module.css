@@ -1,0 +1,117 @@
+
+.cardcontainer {
+    border-top: 1px solid #efebff;
+  display: flex;
+  width: 343px;
+  column-gap: 16px;
+  padding-block: 16px;
+margin-inline: auto;
+  .imagecontainer {
+    background-color: #f8f6ff;
+    position: relative;
+    width: 88px;
+    height: 88px;
+    border-radius: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+.img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+}
+
+  .infocontainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .texts {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      row-gap: 5px;
+
+      .name {
+
+          font-family: "Poppins", sans-serif;
+          font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+
+        color: #212121;
+      }
+
+      .clinic {
+        font-weight: 500;
+          font-family: "Poppins", sans-serif;
+        font-size: 12px;
+        line-height: 14px;
+
+        color: #757575;
+      }
+
+      .ratings {
+        display: flex;
+        column-gap: 5px;
+        align-items: center;
+
+        font-weight: 600;
+        font-size: 11px;
+        line-height: 12px;
+
+        color: #484848;
+      }
+
+      .langs {
+        font-weight: 500;
+        font-size: 11px;
+        line-height: 14px;
+          font-family: "Poppins", sans-serif;
+
+        color: #484848;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      row-gap: 8px;
+
+      .select {
+          border: none;
+        padding: 12px 4px;
+
+        width: 56px;
+        height: 40px;
+
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+
+        color: #ffffff;
+        background: #5d5fef;
+        border-radius: 12px;
+        cursor: pointer;
+
+    }
+
+      .info {
+        padding: 12px 4px;
+
+        width: 56px;
+        height: 40px;
+
+        border-radius: 12px;
+
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+
+        color: #212121;
+      }
+    }
+  }
+}
+

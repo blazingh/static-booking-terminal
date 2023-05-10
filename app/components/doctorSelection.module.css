@@ -1,0 +1,17 @@
+
+.DoctorSelection{
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two equal columns on desktop */
+  grid-gap: 10px;
+  justify-content: center; /* center items horizontally */
+  align-items: center; /* center items vertically */
+}
+
+@media (max-width: 900px) {
+  .DoctorSelection {
+    grid-template-columns: 1fr; /* one column on mobile */
+  grid-gap: 10px;
+  justify-content: center; /* center items horizontally */
+  align-items: center; /* center items vertically */
+  }
+}
