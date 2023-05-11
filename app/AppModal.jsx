@@ -1,5 +1,5 @@
 import styles from "./page.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import StatusBar from "./components/statusBar";
 import Header from "./components/header";
 import DoctorSelection from "./components/doctorSelection";
@@ -23,6 +23,8 @@ const AppModal = ({ closeModal }) => {
             surname: "Yılmaz",
         },
     });
+
+    const divRef = useRef(null);
 
     const [firmInfo, setFirmInfo] = useState({});
 
@@ -57,6 +59,15 @@ const AppModal = ({ closeModal }) => {
         getFirmInfo();
     }, []);
 
+    useEffect(() => {
+        if (divRef?.current) {
+            divRef?.current.scroll({
+                top: 0,
+                behavior: "smooth",
+            });
+        }
+    }, [data.step]);
+
     return (
         <div className={styles.AppModal}>
             <div className={styles.Content}>
@@ -74,7 +85,7 @@ const AppModal = ({ closeModal }) => {
                 />
 
                 {/* content */}
-                <div className={styles.ContentContainer}>
+                <div className={styles.ContentContainer} ref={divRef}>
                     {data.step === 1 && (
                         <DoctorSelection
                             firmId={firmInfo?.id}

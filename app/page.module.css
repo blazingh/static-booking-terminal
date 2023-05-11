@@ -72,7 +72,8 @@
   padding-bottom: 162px;
 
   @media (max-width: 768px) {
-    padding-bottom: 324px;
+    padding-bottom: 360px;
+    margin-top: 0px;
   }
 
   --ms-overflow-style: none; /* IE and Edge */

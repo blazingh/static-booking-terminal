@@ -32,7 +32,9 @@ const StatusBar = ({ step, user, appointment, doctor, setStep }) => {
                 )}
             </div>
 
-            <SvgAccordian />
+            <div className={styles.Icon}>
+                <SvgAccordian />
+            </div>
 
             {/* second step */}
             <div
@@ -60,7 +62,9 @@ const StatusBar = ({ step, user, appointment, doctor, setStep }) => {
                 )}
             </div>
 
-            <SvgAccordian />
+            <div className={styles.Icon}>
+                <SvgAccordian />
+            </div>
 
             {/* third step */}
             <div className={styles.StatusItem}>

@@ -281,7 +281,8 @@
     padding: 16px 8px;
     gap: 8px;
 
-    width: 343px;
+    width: 100%;
+    max-width: 343px;
     height: 56px;
 
     border: none;
@@ -377,7 +378,8 @@
   padding: 16px 8px;
   gap: 8px;
 
-  width: 343px;
+  width: 100%;
+  max-width: 343px;
   height: 56px;
 
   box-shadow: 0px 1px 0px #c7d8e9;
