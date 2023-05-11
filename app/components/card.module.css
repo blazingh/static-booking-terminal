@@ -1,11 +1,12 @@
-
 .cardcontainer {
-    border-top: 1px solid #efebff;
+  border-top: 1px solid #efebff;
   display: flex;
-  width: 343px;
+  width: 100%;
+  max-width: 343px;
+
   column-gap: 16px;
   padding-block: 16px;
-margin-inline: auto;
+  margin-inline: auto;
   .imagecontainer {
     background-color: #f8f6ff;
     position: relative;
@@ -14,12 +15,12 @@ margin-inline: auto;
     border-radius: 16px;
     overflow: hidden;
     flex-shrink: 0;
-.img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-}
+    .img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 
   .infocontainer {
     width: 100%;
@@ -34,9 +35,8 @@ margin-inline: auto;
       row-gap: 5px;
 
       .name {
-
-          font-family: "Poppins", sans-serif;
-          font-weight: 500;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
         font-size: 14px;
         line-height: 20px;
 
@@ -45,7 +45,7 @@ margin-inline: auto;
 
       .clinic {
         font-weight: 500;
-          font-family: "Poppins", sans-serif;
+        font-family: "Poppins", sans-serif;
         font-size: 12px;
         line-height: 14px;
 
@@ -68,7 +68,7 @@ margin-inline: auto;
         font-weight: 500;
         font-size: 11px;
         line-height: 14px;
-          font-family: "Poppins", sans-serif;
+        font-family: "Poppins", sans-serif;
 
         color: #484848;
       }
@@ -80,7 +80,7 @@ margin-inline: auto;
       row-gap: 8px;
 
       .select {
-          border: none;
+        border: none;
         padding: 12px 4px;
 
         width: 56px;
@@ -94,8 +94,7 @@ margin-inline: auto;
         background: #5d5fef;
         border-radius: 12px;
         cursor: pointer;
-
-    }
+      }
 
       .info {
         padding: 12px 4px;
@@ -114,4 +113,3 @@ margin-inline: auto;
     }
   }
 }
-

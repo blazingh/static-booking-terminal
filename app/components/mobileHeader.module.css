@@ -1,0 +1,43 @@
+.LogoHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .Row {
+    height: 72px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .HeaderItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .HeaderTitle {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #212121;
+    white-space: nowrap;
+  }
+}
+
+.Logo {
+  justify-self: flex-start;
+  width: 180px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.secondaryLogo {
+  justify-self: flex-end;
+  height: 100%;
+  object-fit: cover;
+}

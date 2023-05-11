@@ -5,6 +5,7 @@ import Header from "./components/header";
 import DoctorSelection from "./components/doctorSelection";
 import DateSelection from "./components/dateSelection";
 import UserInfo from "./components/userInfo";
+import MobileHeader from "./components/mobileHeader";
 const AppModal = ({ closeModal }) => {
     const [data, setData] = useState({
         step: 1,
@@ -28,7 +29,7 @@ const AppModal = ({ closeModal }) => {
     let screenWidth = null;
 
     if (typeof window !== "undefined" && window.screen.width) {
-        screenWidth = window.screen.width;
+        screenWidth = window.innerWidth;
     }
 
     let url = "";
@@ -60,7 +61,8 @@ const AppModal = ({ closeModal }) => {
         <div className={styles.AppModal}>
             <div className={styles.Content}>
                 {/* header */}
-                <Header firm={firmInfo} />
+                {screenWidth > 950 && <Header firm={firmInfo} />}
+                {screenWidth <= 950 && <MobileHeader firm={firmInfo} />}
 
                 {/* status bar */}
                 <StatusBar
