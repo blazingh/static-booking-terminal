@@ -4,6 +4,7 @@ import StatusBar from "./components/statusBar";
 import Header from "./components/header";
 import DoctorSelection from "./components/doctorSelection";
 import DateSelection from "./components/dateSelection";
+import UserInfo from "./components/userInfo";
 const AppModal = ({ closeModal }) => {
     const [data, setData] = useState({
         step: 1,
@@ -24,11 +25,8 @@ const AppModal = ({ closeModal }) => {
 
     const [firmInfo, setFirmInfo] = useState({});
 
-    const [doctors, setDoctors] = useState([]);
-
-    const [appointments, setAppointments] = useState([]);
-
     let screenWidth = null;
+
     if (typeof window !== "undefined" && window.screen.width) {
         screenWidth = window.screen.width;
     }
@@ -94,6 +92,14 @@ const AppModal = ({ closeModal }) => {
                             handleAppointmentSelection={(appointment) => {
                                 setData((prev) => ({ ...prev, appointment, step: 3 }));
                             }}
+                        />
+                    )}
+                    {data.step === 3 && (
+                        <UserInfo
+                            firmId={firmInfo?.id}
+                            doctorId={data.doctor?.id}
+                            slot={data.appointment?.id}
+                            onSuccess={(user) => { }}
                         />
                     )}
                 </div>
