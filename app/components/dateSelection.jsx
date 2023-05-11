@@ -4,7 +4,12 @@ import SvgArrow from "../icons/Arrow";
 
 import styles from "./date.module.css";
 
-function DateSelection({ handleAppointmentSelection, clinicId, doctorId }) {
+function DateSelection({
+  handleAppointmentSelection,
+  clinicId,
+  doctorId,
+  scrollToBottom,
+}) {
   const sliderRef = useRef(null);
 
   const [monthName, setmonthName] = useState("");
@@ -115,7 +120,10 @@ function DateSelection({ handleAppointmentSelection, clinicId, doctorId }) {
       setAppointments((p) => ({ ...p, error: true, loading: false }));
     }
   };
-  useState(() => {
+
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
     getAppointments();
     setDates(getdates());
   }, []);
@@ -125,6 +133,13 @@ function DateSelection({ handleAppointmentSelection, clinicId, doctorId }) {
     getAppointments();
     setSelected(null);
   }, [appointments.date]);
+
+  useEffect(() => {
+    // wait 1 sec
+    setTimeout(() => {
+      scrollToBottom();
+    }, 500);
+  }, [selected]);
 
   return (
     <div className={styles.container}>
@@ -228,6 +243,7 @@ function DateSelection({ handleAppointmentSelection, clinicId, doctorId }) {
             {selected && (
               <div className={styles.button_cont}>
                 <button
+                  ref={buttonRef}
                   type="button"
                   className={styles.button}
                   onClick={() => handleAppointmentSelection(selected)}

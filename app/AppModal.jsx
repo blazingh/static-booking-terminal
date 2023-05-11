@@ -8,7 +8,7 @@ import UserInfo from "./components/userInfo";
 import MobileHeader from "./components/mobileHeader";
 const AppModal = ({ closeModal }) => {
     const [data, setData] = useState({
-        step: 1,
+        step: 3,
         doctor: {
             id: 1,
             name: "Dr. Ahmet Yılmaz",
@@ -59,6 +59,15 @@ const AppModal = ({ closeModal }) => {
         getFirmInfo();
     }, []);
 
+    const scrollToBottom = () => {
+        if (divRef?.current) {
+            divRef?.current.scroll({
+                top: divRef?.current.scrollHeight,
+                behavior: "smooth",
+            });
+        }
+    };
+
     useEffect(() => {
         if (divRef?.current) {
             divRef?.current.scroll({
@@ -100,6 +109,7 @@ const AppModal = ({ closeModal }) => {
                     )}
                     {data.step === 2 && (
                         <DateSelection
+                            scrollToBottom={scrollToBottom}
                             clinicId={firmInfo?.id}
                             doctorId={data.doctor?.id}
                             handleAppointmentSelection={(appointment) => {

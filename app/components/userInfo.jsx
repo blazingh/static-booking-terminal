@@ -54,29 +54,30 @@ const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
   };
 
   const validate = () => {
+    console.log(values);
     setErrors({});
     if (
       values.name &&
       values.surname &&
       values.phoneNumber &&
       values.code &&
-      values.id &&
+      values.hash &&
       values.terms1 &&
       values.terms2
     ) {
       return true;
     }
     if (values.valide) updateValue("valide", false);
-    if (!values.name) updateError("name", t("registerPage.required"));
-    if (!values.surname) updateError("surname", t("registerPage.required"));
-    if (!values.id_no) updateError("id_no", t("registerPage.required"));
-    if (!values.id) updateError("id", t("registerPage.required"));
+    if (!values.name) updateError("name", "registerPage.required");
+    if (!values.surname) updateError("surname", "registerPage.required");
+    if (!values.id_no) updateError("id_no", "registerPage.required");
+    if (!values.hash) updateError("id", "registerPage.required");
     if (!values.phoneNumber)
-      updateError("phoneNumber", t("registerPage.required"));
-    if (!values.code) updateError("code", t("registerPage.required"));
+      updateError("phoneNumber", "registerPage.required");
+    if (!values.code) updateError("code", "registerPage.required");
     if (!values.terms1 || !values.terms2)
-      updateError("terms", t("registerPage.required"));
-    if (!values.date?.valide) updateError("date", t("registerPage.required"));
+      updateError("terms", "registerPage.required");
+    if (!values.date?.valide) updateError("date", "registerPage.required");
     if (!values.valide) updateValue("valide", true);
     return false;
   };
@@ -98,7 +99,7 @@ const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
       values.email &&
       values.phoneNumber &&
       values.code &&
-      values.id &&
+      values.hash &&
       values.password &&
       values.terms1 &&
       values.terms2 &&
@@ -145,43 +146,70 @@ const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
     if (!validate()) return;
     updateValue("loading", true);
     updateValue("error", false);
-    authService
-      .registerSms(values)
-      .then((registerResponse) => {
-        updateValue("loading", false);
-        if (typeof onSuccess === "function") onSuccess(registerResponse);
-      })
-      .catch((err) => {
-        updateValue("loading", false);
-        if (err.data?.errors?.[0]?.translations?.id.includes("errors_user_TC"))
-          setErrors((p) => ({
-            ...p,
-            id_no:
-              "Kişi bilgileri ile T.C. Kimlik No eşleşmemektedir. Lütfen kontrol ediniz.",
-          }));
-        else
-          updateValue(
-            "error",
-            err.data?.errors?.[0]?.description || "error registering"
-          );
-      });
+
+    const request = await fetch(
+      "https://betaapi.dtsanalpos.com/api/register-after-hash",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          ...values,
+          smsCode: values.code,
+          phone: values.phoneNumber,
+          firm_id: 1,
+        }),
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      }
+    );
+
+    const data = await request.json();
+
+    if (data.message === "Success" && data.result) {
+      updateValue("loading", false);
+      if (typeof onSuccess === "function") onSuccess(data.result);
+    } else {
+      updateValue("loading", false);
+      if (data?.errors?.[0]?.translations?.id.includes("errors_user_TC"))
+        setErrors((p) => ({
+          ...p,
+          id_no:
+            "Kişi bilgileri ile T.C. Kimlik No eşleşmemektedir. Lütfen kontrol ediniz.",
+        }));
+      else
+        updateValue(
+          "error",
+          data?.errors?.[0]?.description || "error registering"
+        );
+    }
   };
 
-  const handleSmsSend = () => {
+  const handleSmsSend = async () => {
     setSms((p) => ({ ...p, loading: true, error: false }));
-    authService
-      .requestSms({ phone: values.phoneNumber })
-      .then((res) => {
-        setSms((p) => ({ ...p, sent: true, id: res.id, loading: false }));
-        updateValue("id", res.id);
-      })
-      .catch((err) => {
-        setSms((p) => ({
-          ...p,
-          loading: false,
-          error: err.data?.errors?.[0]?.description || "error sending code",
-        }));
-      });
+    const request = await fetch("https://betaapi.dtsanalpos.com/api/hash-sms", {
+      method: "POST",
+      body: JSON.stringify({ phone: values.phoneNumber }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+
+    const data = await request.json();
+    if (data.message === "Success" && data.result.hash) {
+      setSms((p) => ({
+        ...p,
+        sent: true,
+        hash: data.result.hash,
+        loading: false,
+      }));
+      updateValue("hash", data.result.hash);
+    } else {
+      setSms((p) => ({
+        ...p,
+        loading: false,
+        error: "",
+      }));
+    }
   };
 
   return (
@@ -215,7 +243,7 @@ const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
 
       {/* phone number input */}
       <InputTemplate
-        error={sms.error || errors.phoneNumber || errors.id}
+        error={sms.error || errors.phoneNumber || errors.hash}
         label="Telefon Numarası"
         value={values.phoneNumber}
         onChange={handlePhoneChange}
@@ -381,11 +409,7 @@ const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
         className={styles.submitbutton}
         onClick={handleRegister}
       >
-        {values.loading ? (
-          <Loading color="white" radius={6} width={2} />
-        ) : (
-          "Kayıt Ol"
-        )}
+        {values.loading ? "..." : "Kayıt Ol"}
       </button>
       {values.error && (
         <div
