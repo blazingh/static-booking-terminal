@@ -77,6 +77,10 @@ const AppModal = ({ closeModal }) => {
         }
     }, [data.step]);
 
+    const handleUserSuccess = (user) => {
+        setData((prev) => ({ ...prev, user, step: 4 }));
+    };
+
     return (
         <div className={styles.AppModal}>
             <div className={styles.Content}>
@@ -122,7 +126,7 @@ const AppModal = ({ closeModal }) => {
                             firmId={firmInfo?.id}
                             doctorId={data.doctor?.id}
                             slot={data.appointment?.id}
-                            onSuccess={(user) => { }}
+                            onSuccess={handleUserSuccess}
                         />
                     )}
                 </div>
