@@ -96,11 +96,10 @@ const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
     if (
       values.name &&
       values.surname &&
-      values.email &&
+      values.id_no &&
       values.phoneNumber &&
       values.code &&
       values.hash &&
-      values.password &&
       values.terms1 &&
       values.terms2 &&
       values.date?.valide
@@ -130,16 +129,6 @@ const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
     if (e.target.value.length > 6) return e.preventDefault();
     updateError("code", prob[0]);
     return updateValue("code", e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    const prob = [];
-    if (e.target.value && e.target.value?.length < 6)
-      prob.push("şifre çok kısa");
-
-    updateError("password", prob[0]);
-    updateValue("password", e.target.value);
-    updateValue("password_confirmation", e.target.value);
   };
 
   const handleRegister = async () => {

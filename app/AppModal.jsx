@@ -6,9 +6,10 @@ import DoctorSelection from "./components/doctorSelection";
 import DateSelection from "./components/dateSelection";
 import UserInfo from "./components/userInfo";
 import MobileHeader from "./components/mobileHeader";
+import Result from "./components/result";
 const AppModal = ({ closeModal }) => {
     const [data, setData] = useState({
-        step: 3,
+        step: 1,
         doctor: {
             id: 1,
             name: "Dr. Ahmet Yılmaz",
@@ -77,7 +78,8 @@ const AppModal = ({ closeModal }) => {
         }
     }, [data.step]);
 
-    const handleUserSuccess = (user) => {
+    const handleUserSuccess = async (user) => {
+        console.log(data);
         setData((prev) => ({ ...prev, user, step: 4 }));
     };
 
@@ -129,6 +131,7 @@ const AppModal = ({ closeModal }) => {
                             onSuccess={handleUserSuccess}
                         />
                     )}
+                    {data.step === 4 && <Result data={data} />}
                 </div>
                 <button
                     type="button"
