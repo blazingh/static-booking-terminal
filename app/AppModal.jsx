@@ -131,7 +131,7 @@ const AppModal = ({ closeModal }) => {
                             onSuccess={handleUserSuccess}
                         />
                     )}
-                    {data.step === 4 && <Result data={data} />}
+                    {data.step === 4 && <Result data={data} firmInfo={firmInfo} />}
                 </div>
                 <button
                     type="button"
