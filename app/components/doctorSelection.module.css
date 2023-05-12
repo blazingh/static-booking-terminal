@@ -1,17 +1,31 @@
-
-.DoctorSelection{
+.DoctorSelection {
   display: grid;
   grid-template-columns: 1fr 1fr; /* two equal columns on desktop */
   grid-gap: 10px;
   justify-content: center; /* center items horizontally */
   align-items: center; /* center items vertically */
+  width: 100%;
 }
 
 @media (max-width: 900px) {
   .DoctorSelection {
     grid-template-columns: 1fr; /* one column on mobile */
-  grid-gap: 10px;
-  justify-content: center; /* center items horizontally */
-  align-items: center; /* center items vertically */
+    grid-gap: 10px;
+    justify-content: center; /* center items horizontally */
+    align-items: center; /* center items vertically */
   }
+}
+
+.message {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  text-align: center;
+  font-family: "Popins", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #212121;
 }

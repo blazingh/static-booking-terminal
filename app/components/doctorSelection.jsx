@@ -7,7 +7,7 @@ const DoctorSelection = ({ firmId, onDoctorSelect }) => {
     const getDoctors = async () => {
         if (!firmId) return;
         const response = await fetch(
-            `https://betaapi.dtsanalpos.com/api/firms/clinic/doctors?clinic_id=${firmId}&page=1&rows_per_page=50`,
+            `https://betaapi.dtsanalpos.com/api/firms/clinic/doctors?clinic_id=${firmId}&page=1&rows_per_page=50`
         );
         const data = await response.json();
 
@@ -39,8 +39,13 @@ const DoctorSelection = ({ firmId, onDoctorSelect }) => {
         return spokenlang;
     };
 
+    if (doctors.length === 0)
+        return <span className={styles.message}>Loading...</span>;
     return (
         <div className={styles.DoctorSelection}>
+            {doctors.length === 0 && (
+                <span className={styles.message}>Loading...</span>
+            )}
             {doctors.length > 1 &&
                 doctors.map((doctor) => (
                     <DoctorCard

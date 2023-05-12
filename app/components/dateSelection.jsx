@@ -202,10 +202,17 @@ function DateSelection({
           width={24}
         />
       </div>
-      {appointments.loading && "Loading..."}
-      {appointments.error && !appointments.loading && (
-        <span>no appointments available</span>
+      {appointments.loading && (
+        <div className={styles.message + " " + styles.loading}>loading...</div>
       )}
+      {!appointments.loading &&
+        (appointments.error ||
+          !appointments.data ||
+          appointments.data.length === 0) && (
+          <span className={styles.message + " " + styles.error}>
+            yoklamaya uygun randevu bulunamadı
+          </span>
+        )}
       {!appointments.loading && !appointments.error && appointments.data && (
         <div>
           <div className={styles.applist}>

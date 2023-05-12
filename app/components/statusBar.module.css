@@ -61,8 +61,10 @@
   }
 }
 
-@media (max-width: 726px) {
+@media (max-width: 950px) {
   .AppointmenStatus {
+    width: 100%;
+
     flex-direction: column;
     gap: 8px;
     margin-top: 0px;

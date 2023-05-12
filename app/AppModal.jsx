@@ -85,6 +85,19 @@ const AppModal = ({ closeModal }) => {
 
     return (
         <div className={styles.AppModal}>
+            <button
+                style={{
+                    background: "transparent",
+                    border: "none",
+                    width: "150%",
+                    height: "150%",
+                    zIndex: "-1",
+                    position: "absolute",
+                    top: "0",
+                    left: "0",
+                }}
+                onClick={closeModal}
+            ></button>
             <div className={styles.Content}>
                 {/* header */}
                 {screenWidth > 950 && <Header firm={firmInfo} />}
