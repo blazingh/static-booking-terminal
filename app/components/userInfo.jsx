@@ -144,7 +144,7 @@ const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
           ...values,
           smsCode: values.code,
           phone: values.phoneNumber,
-          firm_id: 1,
+          firm_id: firmId,
         }),
         headers: {
           "Content-Type": "application/json; charset=utf-8",
