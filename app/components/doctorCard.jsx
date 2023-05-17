@@ -5,9 +5,9 @@ function DoctorCard({ name, image, languages, onSelect, firm }) {
     return (
         <div className={styles.cardcontainer}>
             <div className={styles.imagecontainer} onClick={onSelect} >
-                <img className={styles.img} src={image} alt="doctor"/>
+                <img className={styles.img} src={image} alt="doctor" />
             </div>
-            <div className={styles.infocontainer} onClick={onSelect}buttpxn>
+            <div className={styles.infocontainer} onClick={onSelect} buttpxn>
                 <div className={styles.texts}>
                     <span className={styles.name}>
                         {name}
@@ -20,7 +20,7 @@ function DoctorCard({ name, image, languages, onSelect, firm }) {
                     </span>
                 </div>
                 <div className={styles.buttons}>
-                    <button type="button" className={styles.select} onClick={onSelect} >Sec</button>
+                    <button type="button" className={styles.select} onClick={onSelect} >Seç</button>
                 </div>
             </div>
         </div>

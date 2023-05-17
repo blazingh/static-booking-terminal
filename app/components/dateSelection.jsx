@@ -256,7 +256,7 @@ function DateSelection({
                   className={styles.button}
                   onClick={() => handleAppointmentSelection(selected)}
                 >
-                  Devam Et
+                  Randevu Tarihini Onayla
                 </button>
               </div>
             )}

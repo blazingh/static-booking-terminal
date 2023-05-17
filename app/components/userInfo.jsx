@@ -42,7 +42,7 @@ function InputTemplate({
 }
 
 const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
-  const [values, setValues] = useState({ terms1: false, terms2: false });
+  const [values, setValues] = useState({ terms1: true, terms2: true });
   const [errors, setErrors] = useState({});
   const [sms, setSms] = useState({ sent: false, id: null, loading: false });
 
@@ -68,16 +68,15 @@ const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
       return true;
     }
     if (values.valide) updateValue("valide", false);
-    if (!values.name) updateError("name", "registerPage.required");
-    if (!values.surname) updateError("surname", "registerPage.required");
-    if (!values.id_no) updateError("id_no", "registerPage.required");
-    if (!values.hash) updateError("id", "registerPage.required");
-    if (!values.phoneNumber)
-      updateError("phoneNumber", "registerPage.required");
-    if (!values.code) updateError("code", "registerPage.required");
+    if (!values.name) updateError("name", "bu alan gereklidir");
+    if (!values.surname) updateError("surname", "bu alan gereklidir");
+    if (!values.id_no) updateError("id_no", "bu alan gereklidir");
+    if (!values.hash) updateError("id", "bu alan gereklidir");
+    if (!values.phoneNumber) updateError("phoneNumber", "bu alan gereklidir");
+    if (!values.code) updateError("code", "bu alan gereklidir");
     if (!values.terms1 || !values.terms2)
-      updateError("terms", "registerPage.required");
-    if (!values.date?.valide) updateError("date", "registerPage.required");
+      updateError("terms", "bu alan gereklidir");
+    if (!values.date?.valide) updateError("date", "bu alan gereklidir");
     if (!values.valide) updateValue("valide", true);
     return false;
   };
@@ -282,110 +281,14 @@ const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
       {/* terms of service */}
       <div className={styles.terms}>
         <div className={styles.term}>
-          <button
-            className={styles.checkbox}
-            type="button"
-            onClick={() => {
-              updateValue("terms1", !values.terms1);
-            }}
-          >
-            {values.terms1 ? (
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="0.5"
-                  y="0.5"
-                  width="23"
-                  height="23"
-                  rx="7.5"
-                  fill="#5D5FEF"
-                  stroke="#DBD1F8"
-                />
-                <path
-                  d="M17.426 7.2774L10.2339 14.7015L6.57401 10.9235C6.2157 10.5536 5.62706 10.5536 5.26874 10.9235C4.91042 11.2934 4.91042 11.901 5.26874 12.2709L9.56852 16.7094C9.74777 16.8944 9.97808 17 10.2339 17C10.49 17 10.7203 16.8944 10.8993 16.7094L18.7313 8.62479C19.0896 8.25491 19.0896 7.64729 18.7313 7.2774C18.3731 6.90753 17.81 6.90753 17.426 7.2774Z"
-                  fill="white"
-                  stroke="white"
-                />
-              </svg>
-            ) : (
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="0.5"
-                  y="0.5"
-                  width="23"
-                  height="23"
-                  rx="7.5"
-                  fill="#F4F4F4"
-                  stroke="#DBD1F8"
-                />
-              </svg>
-            )}
-          </button>
-          <span>terms and conditions 1</span>
+          <a href="https://distedavim.com/w/kullanim-kosullari" target="_blank">
+            Kullanım Koşulları
+          </a>
         </div>
         <div className={styles.term}>
-          <button
-            className={styles.checkbox}
-            type="button"
-            onClick={() => {
-              updateValue("terms2", !values.terms2);
-            }}
-          >
-            {values.terms2 ? (
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="0.5"
-                  y="0.5"
-                  width="23"
-                  height="23"
-                  rx="7.5"
-                  fill="#5D5FEF"
-                  stroke="#DBD1F8"
-                />
-                <path
-                  d="M17.426 7.2774L10.2339 14.7015L6.57401 10.9235C6.2157 10.5536 5.62706 10.5536 5.26874 10.9235C4.91042 11.2934 4.91042 11.901 5.26874 12.2709L9.56852 16.7094C9.74777 16.8944 9.97808 17 10.2339 17C10.49 17 10.7203 16.8944 10.8993 16.7094L18.7313 8.62479C19.0896 8.25491 19.0896 7.64729 18.7313 7.2774C18.3731 6.90753 17.81 6.90753 17.426 7.2774Z"
-                  fill="white"
-                  stroke="white"
-                />
-              </svg>
-            ) : (
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="0.5"
-                  y="0.5"
-                  width="23"
-                  height="23"
-                  rx="7.5"
-                  fill="#F4F4F4"
-                  stroke="#DBD1F8"
-                />
-              </svg>
-            )}
-          </button>
-          <span>terms and conditions 2</span>
+          <a href="https://distedavim.com/w/kvkk" target="_blank">
+            KVKK Aydınlatma Metni
+          </a>
         </div>
         {errors.terms && (
           <label className={styles.errors + styles.label}>{errors.terms}</label>
@@ -398,7 +301,7 @@ const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
         className={styles.submitbutton}
         onClick={handleRegister}
       >
-        {values.loading ? "..." : "Kayıt Ol"}
+        {values.loading ? "..." : "Randevuyu Onayla"}
       </button>
       {values.error && (
         <div

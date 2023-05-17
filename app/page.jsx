@@ -16,7 +16,7 @@ export default function Home() {
         <div id="distedaivm-booking-terminal">
             {!modalOpen && !loading && (
                 <button className={styles.AppButton} onClick={() => setModalOpen(true)}>
-                    Make Appointment
+                    Hemen Randevu Al
                 </button>
             )}
             {modalOpen && !loading && (
