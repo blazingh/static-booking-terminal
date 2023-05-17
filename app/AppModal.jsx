@@ -146,28 +146,6 @@ const AppModal = ({ closeModal }) => {
                     )}
                     {data.step === 4 && <Result data={data} firmInfo={firmInfo} />}
                 </div>
-                <button
-                    type="button"
-                    className={styles.Button}
-                    onClick={() => {
-                        setData((prev) => ({ ...prev, step: prev.step + 1 }));
-                    }}
-                >
-                    add
-                </button>
-
-                <button
-                    type="button"
-                    className={styles.Button}
-                    onClick={() => {
-                        setData((prev) => ({ ...prev, step: prev.step - 1 }));
-                    }}
-                >
-                    remove
-                </button>
-                <button className={styles.CloseButton} onClick={closeModal}>
-                    X
-                </button>
             </div>
         </div>
     );

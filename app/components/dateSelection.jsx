@@ -136,6 +136,7 @@ function DateSelection({
 
   useEffect(() => {
     // wait 1 sec
+    if (!selected) return;
     setTimeout(() => {
       scrollToBottom();
     }, 500);

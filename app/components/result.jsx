@@ -34,7 +34,6 @@ const Result = ({ data, firmInfo }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.result}>{status}</div>
       {status === "success" && (
         <div className={styles.result}>
           <svg

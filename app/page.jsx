@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 
 import styles from "./page.module.css";
 import { useState, useEffect } from "react";
@@ -7,15 +6,22 @@ import AppModal from "./AppModal";
 
 export default function Home() {
     const [modalOpen, setModalOpen] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(false);
+    }, []);
 
     return (
-        <div className={styles.AppPage}>
-            {!modalOpen && (
+        <div id="distedaivm-booking-terminal">
+            {!modalOpen && !loading && (
                 <button className={styles.AppButton} onClick={() => setModalOpen(true)}>
                     Make Appointment
                 </button>
             )}
-            {modalOpen && <AppModal closeModal={() => setModalOpen(false)} />}
+            {modalOpen && !loading && (
+                <AppModal closeModal={() => setModalOpen(false)} />
+            )}
         </div>
     );
 }
