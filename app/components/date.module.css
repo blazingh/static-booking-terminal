@@ -133,14 +133,14 @@
 .arrowleft {
   position: absolute;
   top: 45px;
-  left: 0px;
+  left: -50px;
   z-index: 2;
   cursor: pointer;
 }
 .arrowright {
   position: absolute;
   top: 45px;
-  right: 0px;
+  right: -50px;
   z-index: 2;
   cursor: pointer;
 }

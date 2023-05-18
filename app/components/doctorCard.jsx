@@ -7,7 +7,7 @@ function DoctorCard({ name, image, languages, onSelect, firm }) {
             <div className={styles.imagecontainer} onClick={onSelect} >
                 <img className={styles.img} src={image} alt="doctor" />
             </div>
-            <div className={styles.infocontainer} onClick={onSelect} buttpxn>
+            <div className={styles.infocontainer} onClick={onSelect}>
                 <div className={styles.texts}>
                     <span className={styles.name}>
                         {name}

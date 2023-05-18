@@ -18,6 +18,8 @@ function DateSelection({
 
   const [selected, setSelected] = useState(null);
 
+  const scrollContainerRef = useRef(null);
+
   const [appointments, setAppointments] = useState({
     data: null,
     loading: false,
@@ -29,6 +31,28 @@ function DateSelection({
     sliderRef.current.scrollLeft += scrollOffset;
   };
 
+  const handleDateClick = (event, index) => {
+    const container = scrollContainerRef.current;
+    const containerWidth = container.clientWidth;
+    const element = event.target;
+    const elementWidth = element.offsetWidth;
+
+    const containerScrollLeft = container.scrollLeft;
+    const containerOffset = container.getBoundingClientRect().left;
+    const elementOffset =
+      element.getBoundingClientRect().left - containerOffset;
+
+    const scrollLeft =
+      containerScrollLeft +
+      elementOffset -
+      containerWidth / 2 +
+      elementWidth / 2;
+
+    container.scrollTo({
+      left: scrollLeft,
+      behavior: "smooth",
+    });
+  };
   const getdates = () => {
     const months = {
       tr: [
@@ -152,15 +176,16 @@ function DateSelection({
           height={24}
           width={24}
         />
-        <div className={styles.dateselector} ref={sliderRef}>
+        <div className={styles.dateselector} ref={scrollContainerRef}>
           {dates.map((d, index) => (
             <div
               key={index}
               className={styles.datecontainer}
-              onClick={() => {
+              onClick={(event) => {
                 setAppointments((p) => ({ ...p, date: d.date }));
                 setmonthName(d.month);
                 setdayName(d.day);
+                handleDateClick(event, index);
               }}
             >
               <div

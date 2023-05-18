@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./page.module.css";
 import { useState, useEffect, useRef } from "react";
 import StatusBar from "./components/statusBar";
@@ -42,6 +44,17 @@ const AppModal = ({ closeModal }) => {
             .slice(0, 3)
             .join("/")
             .replace(/\/$/, "");
+    }
+
+    if (typeof window !== "undefined") {
+        url =
+            window.location != window.parent.location
+                ? document.referrer
+                : document.location.href;
+
+        url = url.split("/").slice(0, 3).join("/").replace(/\/$/, "");
+
+        console.log(url);
     }
 
     const getFirmInfo = async () => {

@@ -13,15 +13,20 @@ export default function Home() {
     }, []);
 
     return (
-        <div id="distedaivm-booking-terminal">
-            {!modalOpen && !loading && (
-                <button className={styles.AppButton} onClick={() => setModalOpen(true)}>
-                    Hemen Randevu Al
-                </button>
-            )}
-            {modalOpen && !loading && (
-                <AppModal closeModal={() => setModalOpen(false)} />
-            )}
+        <div>
+            <div id="distedaivm-booking-terminal">
+                {!modalOpen && !loading && (
+                    <button
+                        className={styles.AppButton}
+                        onClick={() => setModalOpen(true)}
+                    >
+                        Hemen Randevu Al
+                    </button>
+                )}
+                {modalOpen && !loading && (
+                    <AppModal closeModal={() => setModalOpen(false)} />
+                )}
+            </div>
         </div>
     );
 }
