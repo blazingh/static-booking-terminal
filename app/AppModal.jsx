@@ -9,7 +9,7 @@ import DateSelection from "./components/dateSelection";
 import UserInfo from "./components/userInfo";
 import MobileHeader from "./components/mobileHeader";
 import Result from "./components/result";
-const AppModal = ({ closeModal }) => {
+const AppModal = () => {
     const [data, setData] = useState({
         step: 1,
         doctor: {
@@ -38,13 +38,6 @@ const AppModal = ({ closeModal }) => {
     }
 
     let url = "";
-    if (typeof window !== "undefined" && window.location.href) {
-        url = window.location.href
-            .split("/")
-            .slice(0, 3)
-            .join("/")
-            .replace(/\/$/, "");
-    }
 
     if (typeof window !== "undefined") {
         url =
@@ -96,6 +89,10 @@ const AppModal = ({ closeModal }) => {
         setData((prev) => ({ ...prev, user, step: 4 }));
     };
 
+    const handleHideFrame = () => {
+        window.parent.postMessage("hide=>Distedavim-Booking-Terminal-Frame", "*");
+    };
+
     return (
         <div className={styles.AppModal}>
             <button
@@ -109,7 +106,7 @@ const AppModal = ({ closeModal }) => {
                     top: "0",
                     left: "0",
                 }}
-                onClick={closeModal}
+                onClick={handleHideFrame}
             ></button>
             <div className={styles.Content}>
                 {/* header */}
