@@ -51,7 +51,9 @@ const DoctorSelection = ({ firmId, onDoctorSelect }) => {
                     <DoctorCard
                         key={doctor.id}
                         onSelect={() => onDoctorSelect(doctor)}
-                        name={doctor.name}
+                        name={
+                            doctor?.degree?.tr + " " + doctor?.name + " " + doctor?.surname
+                        }
                         firm={doctor.branch?.tr}
                         image={`https://betaapi.dtsanalpos.com/${doctor?.files?.["profile.image"]?.tr?.[0]?.file}`}
                         languages={getLanguages(doctor.spoken_languages)}

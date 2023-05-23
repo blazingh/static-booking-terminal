@@ -22,7 +22,8 @@ const StatusBar = ({ step, user, appointment, doctor, setStep }) => {
                     <div className={styles.StatusText}>
                         <span className={styles.StatusTitleGrey}>Hekim Seç</span>
                         <span className={styles.StatusDescription}>
-                            {doctor?.name || ""} {doctor?.surname || ""}
+                            {doctor?.branch?.tr || ""} {doctor?.name || ""}{" "}
+                            {doctor?.surname || ""}
                         </span>
                     </div>
                 ) : (
