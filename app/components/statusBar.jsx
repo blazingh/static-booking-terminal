@@ -17,7 +17,9 @@ const StatusBar = ({ step, user, appointment, doctor, setStep }) => {
                     if (step > 1) setStep(1);
                 }}
             >
-                {step === 1 ? <SvgDoctorActive /> : <SvgCheck />}
+                {step < 1 && <SvgUserGrey />}
+                {step === 1 && <SvgUserActive />}
+                {step > 1 && <SvgCheck />}
                 {step > 1 && doctor?.id ? (
                     <div className={styles.StatusText}>
                         <span className={styles.StatusTitleGrey}>Hekim Seç</span>

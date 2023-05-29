@@ -9,9 +9,10 @@ import DateSelection from "./components/dateSelection";
 import UserInfo from "./components/userInfo";
 import MobileHeader from "./components/mobileHeader";
 import Result from "./components/result";
+import ClinicSelection from "./components/clinics";
 const AppModal = () => {
     const [data, setData] = useState({
-        step: 1,
+        step: 0,
         doctor: {
             id: 1,
             name: "Dr. Ahmet Yılmaz",
@@ -26,6 +27,8 @@ const AppModal = () => {
             surname: "Yılmaz",
         },
     });
+
+    const [firms, setFirms] = useState([]);
 
     const divRef = useRef(null);
 
@@ -56,7 +59,11 @@ const AppModal = () => {
         );
         const data = await response.json();
         if (data?.message == "Success" && data?.result?.length > 0) {
-            setFirmInfo(data.result[0]);
+            if (data.result.length > 1) {
+                setFirms(data.result);
+            } else {
+                setFirmInfo(data.result[0]);
+            }
         } else {
             setFirmInfo({ fail: true });
         }
@@ -93,6 +100,10 @@ const AppModal = () => {
         window.parent.postMessage("hide=>Distedavim-Booking-Terminal-Frame", "*");
     };
 
+    useEffect(() => {
+        if (firmInfo?.id) setData((prev) => ({ ...prev, step: 1 }));
+        else setData((prev) => ({ ...prev, step: 0 }));
+    }, [firmInfo]);
     return (
         <div className={styles.AppModal}>
             <button
@@ -124,6 +135,14 @@ const AppModal = () => {
 
                 {/* content */}
                 <div className={styles.ContentContainer} ref={divRef}>
+                    {data.step === 0 && (
+                        <div className={styles.FirmSelection}>
+                            <h1 className={styles.Title}>
+                                Lütfen randevu almak istediğiniz kurumu seçiniz.
+                            </h1>
+                            <ClinicSelection clinics={firms} onSelect={setFirmInfo} />
+                        </div>
+                    )}
                     {data.step === 1 && (
                         <DoctorSelection
                             firmId={firmInfo?.id}
