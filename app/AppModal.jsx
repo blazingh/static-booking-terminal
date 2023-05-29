@@ -135,7 +135,7 @@ const AppModal = () => {
 
                 {/* content */}
                 <div className={styles.ContentContainer} ref={divRef}>
-                    {data.step === 0 && (
+                    {data.step === 0 && firms.length > 0 && (
                         <div className={styles.FirmSelection}>
                             <h1 className={styles.Title}>
                                 Lütfen randevu almak istediğiniz kurumu seçiniz.
