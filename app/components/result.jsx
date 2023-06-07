@@ -8,7 +8,7 @@ const Result = ({ data, firmInfo }) => {
   useEffect(() => {
     const request = async () => {
       const req = await fetch(
-        "https://betaapi.dtsanalpos.com/api/clinic/terminal/addnewapp",
+        "https://dtsanalpos.com/api/clinic/terminal/addnewapp",
         {
           method: "POST",
           headers: {

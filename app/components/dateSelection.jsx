@@ -123,7 +123,7 @@ function DateSelection({
   const getAppointments = async () => {
     setAppointments((p) => ({ ...p, loading: true, error: false }));
     const result = await fetch(
-      `https://betaapi.dtsanalpos.com/api/treatments/plan/availability?clinic_id=${clinicId}&doctor_id=${doctorId}&date=${appointments.date}`
+      `https://dtsanalpos.com/api/treatments/plan/availability?clinic_id=${clinicId}&doctor_id=${doctorId}&date=${appointments.date}`
     );
     const data = await result.json();
     if (data.message === "Success") {

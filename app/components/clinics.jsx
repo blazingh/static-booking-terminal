@@ -12,7 +12,7 @@ function ClinicSelection({ clinics, onSelect }) {
             onSelect={() => onSelect(clinic)}
             location={`${clinic.city || clinic?.city_part || ""}, ${clinic.district
               }`}
-            image={`https://betaapi.dtsanalpos.com/${clinic?.files?.["logo.image"].tr[0].file}`}
+            image={`https://dtsanalpos.com/${clinic?.files?.["logo.image"].tr[0].file}`}
           />
         ))}
     </div>

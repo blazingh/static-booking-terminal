@@ -55,7 +55,7 @@ const AppModal = () => {
 
     const getFirmInfo = async () => {
         const response = await fetch(
-            `https://betaapi.dtsanalpos.com/api/firm/getbyurl?url=${url}`
+            `https://dtsanalpos.com/api/firm/getbyurl?url=${url}`
         );
         const data = await response.json();
         if (data?.message == "Success" && data?.result?.length > 0) {

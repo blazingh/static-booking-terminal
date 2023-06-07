@@ -136,7 +136,7 @@ const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
     updateValue("error", false);
 
     const request = await fetch(
-      "https://betaapi.dtsanalpos.com/api/register-after-hash",
+      "https://dtsanalpos.com/api/register-after-hash",
       {
         method: "POST",
         body: JSON.stringify({
@@ -174,7 +174,7 @@ const UserInfo = ({ doctorId, slot, firmId, onSuccess }) => {
 
   const handleSmsSend = async () => {
     setSms((p) => ({ ...p, loading: true, error: false }));
-    const request = await fetch("https://betaapi.dtsanalpos.com/api/hash-sms", {
+    const request = await fetch("https://dtsanalpos.com/api/hash-sms", {
       method: "POST",
       body: JSON.stringify({ phone: values.phoneNumber }),
       headers: {

@@ -7,7 +7,7 @@ const DoctorSelection = ({ firmId, onDoctorSelect }) => {
     const getDoctors = async () => {
         if (!firmId) return;
         const response = await fetch(
-            `https://betaapi.dtsanalpos.com/api/firms/clinic/doctors?clinic_id=${firmId}&page=1&rows_per_page=50`
+            `https://dtsanalpos.com/api/firms/clinic/doctors?clinic_id=${firmId}&page=1&rows_per_page=50`
         );
         const data = await response.json();
 
@@ -55,7 +55,7 @@ const DoctorSelection = ({ firmId, onDoctorSelect }) => {
                             doctor?.degree?.tr + " " + doctor?.name + " " + doctor?.surname
                         }
                         firm={doctor.branch?.tr}
-                        image={`https://betaapi.dtsanalpos.com/${doctor?.files?.["profile.image"]?.tr?.[0]?.file}`}
+                        image={`https://dtsanalpos.com/${doctor?.files?.["profile.image"]?.tr?.[0]?.file}`}
                         languages={getLanguages(doctor.spoken_languages)}
                     />
                 ))}

@@ -19,7 +19,7 @@ const Header = ({ firm }) => {
                 <img
                     src={
                         firm?.files?.["logo.image"]?.tr?.[0].file
-                            ? `https://betaapi.dtsanalpos.com/${firm?.files?.["logo.image"]?.tr?.[0].file}`
+                            ? `https://dtsanalpos.com/${firm?.files?.["logo.image"]?.tr?.[0].file}`
                             : ``
                     }
                     className={styles.secondaryLogo}
